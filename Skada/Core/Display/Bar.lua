@@ -1029,7 +1029,6 @@ Skada:RegisterDisplay("Bar Display", "mod_bar_desc", function(L, P, G, _, _, O)
 			g:SetOrientation(p.barorientation)
 			g:SetBarHeight(p.barheight)
 			g:SetHeight(p.background.height)
-			g:SetWidth(p.barwidth)
 			g:SetLength(p.barwidth)
 			g:SetTexture(Skada:MediaFetch("statusbar", p.bartexture))
 			g:SetDisableHighlight(p.disablehighlight)
@@ -2063,8 +2062,7 @@ Skada:RegisterDisplay("Bar Display", "mod_bar_desc", function(L, P, G, _, _, O)
 					enabletitle = true,
 					titleset = true,
 					display = "bar",
-					snapto = true,
-					version = 1
+					snapto = true
 				},
 				["Omen Threat Meter"] = {
 					barspacing = 1,
@@ -2110,8 +2108,7 @@ Skada:RegisterDisplay("Bar Display", "mod_bar_desc", function(L, P, G, _, _, O)
 					strata = "LOW",
 					scale = 1,
 					enabletitle = true,
-					display = "bar",
-					version = 1
+					display = "bar"
 				},
 				["Recount"] = {
 					barspacing = 0,
@@ -2200,8 +2197,7 @@ Skada:RegisterDisplay("Bar Display", "mod_bar_desc", function(L, P, G, _, _, O)
 					enabletitle = true,
 					titleset = true,
 					display = "bar",
-					snapto = true,
-					version = 1
+					snapto = true
 				}
 			}
 
