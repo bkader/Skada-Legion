@@ -373,6 +373,33 @@ Skada:RegisterModule("Potions", function(L, P, G, C, _, O)
 		potion_ids[105709] = "76098" -- Master Mana Potion
 		potion_ids[139493] = "93742" -- Healing Potion
 
+		--[[ Wardlords of Draenor ]]--
+		potion_ids[122451] = "118704" -- Commander's Draenic Invisibility Potion
+		potion_ids[156423] = "109217" -- Draenic Agility Potion
+		potion_ids[156426] = "109218" -- Draenic Intellect Potion
+		potion_ids[156428] = "109219" -- Draenic Strength Potion
+		potion_ids[156430] = "109220" -- Draenic Versatility Potion
+		potion_ids[156436] = "109222" -- Draenic Mana Potion
+		potion_ids[156438] = "117415" -- Smuggled Tonic
+		potion_ids[156445] = "109226" -- Draenic Rejuvenation Potion
+		potion_ids[170403] = "115498" -- Ashran Healing Tonic
+		potion_ids[172160] = "116925" -- Vintage Free Action Potion
+		potion_ids[173260] = "118006" -- Shieldtronic Shield
+		potion_ids[174018] = "118278" -- Pale Vision Potion
+		potion_ids[175790] = "116266" -- Draenic Swiftness Potion
+		potion_ids[175817] = "116276" -- Draenic Living Action Potion
+		potion_ids[175821] = "118704" -- Pure Rage Potion
+		potion_ids[175833] = "116268" -- Draenic Invisibility Potion
+		potion_ids[176107] = "118910" -- Brawler's Draenic Agility Potion
+		potion_ids[176108] = "118911" -- Brawler's Draenic Intellect Potion
+		potion_ids[176109] = "118915" -- Brawler's Bottomless Draenic Strength Potion
+		potion_ids[176114] = "118917" -- Brawler's Bottomless Healing Tonic
+		potion_ids[176151] = "118922" -- Oralius' Whispering Crystal
+		potion_ids[185490] = "124660" -- Darkmoon Healing Tonic
+		potion_ids[185491] = "124661" -- Gladiator's Healing Potion
+		potion_ids[185562] = "124671" -- Darkmoon Firewater
+		potion_ids[191212] = "128647" -- Fizzy Apple Cider
+
 		-- don't edit below unless you know what you're doing.
 		if P.prepotion == nil then
 			P.prepotion = true
