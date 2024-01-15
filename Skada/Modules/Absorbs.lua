@@ -57,6 +57,7 @@ Skada:RegisterModule("Absorbs", function(L, P, G)
 		[47788] = 0x02, -- Guardian Spirit
 		[114908] = 0x02, -- Spirit Shell (Discipline)
 		[114214] = 0x02, -- Angelic Bulwark
+		[152118] = 0x02, -- Clarity of Will
 		-- SHAMAN
 		[114893] = 0x08, -- Stone Bulwark (Stone Bulwark Totem Passive)
 		[145378] = 0x01, -- Item - Shaman T16 Restoration 2P Bonus
@@ -69,6 +70,7 @@ Skada:RegisterModule("Absorbs", function(L, P, G)
 		[110913] = 0x01, -- Dark Bargain
 		-- WARRIOR
 		[112048] = 0x01, -- Shield Barrier (Protection)
+		[190456] = 0x01, -- Ignore Pain (Protection)
 		-- OTHER
 		[4057] = 0x04, -- Flame Deflector (Fire Resistance)
 		[4077] = 0x10, -- Ice Deflector (Frost Resistance)
@@ -134,7 +136,6 @@ Skada:RegisterModule("Absorbs", function(L, P, G)
 		[65858] = 0x04, -- Twin Val'kyr's Shield of Lights
 		[65874] = 0x20, -- Twin Val'kyr's: Shield of Darkness
 		[70845] = 0x01, -- Stoicism
-		[86273] = 0x02, -- Illuminated Healing
 		[105801] = 0x02, -- Delayed Judgment
 		[105909] = 0x02, -- Shield of Fury
 		[108008] = 0x02,
