@@ -414,6 +414,7 @@ function Private.RegisterClasses()
 	ns.classcoords = setmetatable({
 		-- default classes
 		DEATHKNIGHT = {64/512, 128/512, 128/512, 192/512},
+		DEMONHUNTER = {192/512, 256/512, 128/512, 192/512},
 		DRUID = {192/512, 256/512, 0/512, 64/512},
 		HUNTER = {0/512, 64/512, 64/512, 128/512},
 		MAGE = {64/512, 128/512, 0/512, 64/512},
@@ -484,7 +485,9 @@ function Private.RegisterClasses()
 		[267] = {0/512, 64/512, 384/512, 448/512}, --> Warlock: Destruction
 		[268] = {448/512, 512/512, 384/512, 448/512}, --> Monk: Brewmaster
 		[269] = {64/512, 128/512, 448/512, 512/512}, --> Monk: Windwalker
-		[270] = {0/512, 64/512, 448/512, 512/512} --> Monk: Mistweaver
+		[270] = {0/512, 64/512, 448/512, 512/512}, --> Monk: Mistweaver
+		[577] = {128/512, 192/512, 448/512, 512/512}, --> Demon Hunter: Havoc
+		[581] = {192/512, 256/512, 448/512, 512/512} --> Demon Hunter: Vengeance
 	}, speccoords_mt)
 
 	--------------------------
