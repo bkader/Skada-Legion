@@ -400,6 +400,24 @@ Skada:RegisterModule("Potions", function(L, P, G, C, _, O)
 		potion_ids[185562] = "124671" -- Darkmoon Firewater
 		potion_ids[191212] = "128647" -- Fizzy Apple Cider
 
+		--[[ Legion ]]--
+		potion_ids[188016] = "136569" -- Aged/Ancient Health Potion
+		potion_ids[188017] = "127835" -- Ancient Mana Potion
+		potion_ids[188018] = "127836" -- Ancient Rejuvenation Potion
+		potion_ids[188027] = "127843" -- Potion of Deadly Grace
+		potion_ids[188028] = "127844" -- Potion of the Old War
+		potion_ids[188029] = "127845" -- Unbending Potion
+		potion_ids[188030] = "127846" -- Leytorrent Potion
+		potion_ids[193456] = "129192" -- Inquisitor's Menacing Eye
+		potion_ids[216802] = "138727" -- Potion of Defiance
+		potion_ids[216810] = "138729" -- Potion of Heightened Senses
+		potion_ids[223573] = "140347" -- Spirit Berries
+		potion_ids[223595] = "140351" -- Sunfruit
+		potion_ids[229206] = "142117" -- Potion of Prolonged Power
+		potion_ids[231784] = "143542" -- Crown Co. "Kure-Everything" Tonic
+		potion_ids[242551] = "147707" -- Repurposed Fel Focuser
+		potion_ids[251645] = "152615" -- Astral Healing Potion
+
 		-- don't edit below unless you know what you're doing.
 		if P.prepotion == nil then
 			P.prepotion = true
