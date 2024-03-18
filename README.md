@@ -14,6 +14,7 @@ _**FOR PRIVATE SERVERS**_:
 * _[Mists of Pandaria](https://github.com/bkader/Skada-MoP)_
 * _[Warlords of Draenor](https://github.com/bkader/Skada-WoD)_
 * _[Battle for Azeroth](https://github.com/bkader/Skada-BfA)_
+* _[Shadowlands](https://github.com/bkader/Skada-Shadowlands)_
 
 _**FOR OFFICIAL SERVERS**_:
 * _[Retail/Classic Wrath](https://github.com/bkader/Skada-Damage-Meter)_
