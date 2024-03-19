@@ -1643,7 +1643,7 @@ do
 		DAMAGE = ", amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing",
 		MISSED = ", misstype, offhand, amount, critical",
 		HEAL = ", amount, overheal, absorbed, critical",
-		ENERGIZE = ", amount, powertype",
+		ENERGIZE = ", amount, overpower, powertype",
 		DRAIN = ", amount, powertype, extraamount",
 		LEECH = ", amount, powertype, extraamount",
 		INTERRUPT = ", extraspellid, extraspellname, extraschool",

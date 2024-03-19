@@ -9,31 +9,56 @@ Skada:RegisterModule("Resources", function(L, P)
 	local classfmt = Skada.classcolors.format
 	local mode_cols = nil
 
-	local SPELL_POWER_MANA = SPELL_POWER_MANA or 0
-	local SPELL_POWER_RAGE = SPELL_POWER_RAGE or 1
-	local SPELL_POWER_FOCUS = SPELL_POWER_FOCUS or 2
-	local SPELL_POWER_ENERGY = SPELL_POWER_ENERGY or 3
-	local SPELL_POWER_HAPPINESS = SPELL_POWER_HAPPINESS or 4
-	local SPELL_POWER_RUNIC_POWER = SPELL_POWER_RUNIC_POWER or 6
+	local PowerEnum = _G.Enum and _G.Enum.PowerType
+	local SPELL_POWER_MANA = _G.SPELL_POWER_MANA or (PowerEnum and PowerEnum.Mana) or 0
+	local SPELL_POWER_RAGE = _G.SPELL_POWER_RAGE or (PowerEnum and PowerEnum.Rage) or 1
+	local SPELL_POWER_ENERGY = _G.SPELL_POWER_ENERGY or (PowerEnum and PowerEnum.Energy) or 3
+	local SPELL_POWER_RUNIC_POWER = _G.SPELL_POWER_RUNIC_POWER or (PowerEnum and PowerEnum.RunicPower) or 6
+
+	-- other resources
+	local SPELL_POWER_COMBO_POINTS2 = _G.SPELL_POWER_COMBO_POINTS or (PowerEnum and PowerEnum.ComboPoints) or 4
+	local SPELL_POWER_RUNES = _G.SPELL_POWER_RUNES or (PowerEnum and PowerEnum.Runes) or 5
+	local SPELL_POWER_SOUL_SHARDS = _G.SPELL_POWER_SOUL_SHARDS or (PowerEnum and PowerEnum.SoulShards) or 7
+	local SPELL_POWER_LUNAR_POWER = _G.SPELL_POWER_LUNAR_POWER or (PowerEnum and PowerEnum.LunarPower) or 8
+	local SPELL_POWER_HOLY_POWER = _G.SPELL_POWER_HOLY_POWER  or (PowerEnum and PowerEnum.HolyPower) or 9
+	local SPELL_POWER_MAELSTROM = _G.SPELL_POWER_MAELSTROM or (PowerEnum and PowerEnum.Maelstrom) or 11
+	local SPELL_POWER_CHI = _G.SPELL_POWER_CHI or (PowerEnum and PowerEnum.Chi) or 12
+	local SPELL_POWER_INSANITY = _G.SPELL_POWER_INSANITY or (PowerEnum and PowerEnum.Insanity) or 13
+	local SPELL_POWER_ARCANE_CHARGES = _G.SPELL_POWER_ARCANE_CHARGES or (PowerEnum and PowerEnum.ArcaneCharges) or 16
+	local SPELL_POWER_FURY = _G.SPELL_POWER_FURY or (PowerEnum and PowerEnum.Fury) or 17
+	local SPELL_POWER_PAIN = _G.SPELL_POWER_PAIN or (PowerEnum and PowerEnum.Pain) or 18
 
 	-- used to store total amounts for sets and actors
 	local gainTable = {
+		[-1] = "power",
 		[SPELL_POWER_MANA] = "mana",
 		[SPELL_POWER_RAGE] = "rage",
-		[SPELL_POWER_FOCUS] = "energy",
 		[SPELL_POWER_ENERGY] = "energy",
-		[SPELL_POWER_HAPPINESS] = "energy",
 		[SPELL_POWER_RUNIC_POWER] = "runic"
 	}
 
-	-- users as keys to store spells and their amounts.
+	-- used as keys to store spells and their amounts.
 	local spellTable = {
+		[-1] = "powerspells",
 		[SPELL_POWER_MANA] = "manaspells",
 		[SPELL_POWER_RAGE] = "ragespells",
-		[SPELL_POWER_FOCUS] = "energyspells",
 		[SPELL_POWER_ENERGY] = "energyspells",
-		[SPELL_POWER_HAPPINESS] = "energyspells",
 		[SPELL_POWER_RUNIC_POWER] = "runicspells"
+	}
+
+	-- used to record other power types.
+	local powerTable = {
+		[SPELL_POWER_COMBO_POINTS2] = "9999001",
+		[SPELL_POWER_RUNES] = "9999002",
+		[SPELL_POWER_SOUL_SHARDS] = "9999003",
+		[SPELL_POWER_LUNAR_POWER] = "9999004",
+		[SPELL_POWER_HOLY_POWER] = "9999005",
+		[SPELL_POWER_MAELSTROM] = "9999006",
+		[SPELL_POWER_CHI] = "9999007",
+		[SPELL_POWER_INSANITY] = "9999008",
+		[SPELL_POWER_ARCANE_CHARGES] = "9999009",
+		[SPELL_POWER_FURY] = "9999010",
+		[SPELL_POWER_PAIN] = "9999011",
 	}
 
 	local ignored_spells = Skada.ignored_spells.power -- Edit Skada\Core\Tables.lua
@@ -70,13 +95,19 @@ Skada:RegisterModule("Resources", function(L, P)
 
 	local function spell_energize(t)
 		if t.spellid and not ignored_spells[t.spellid] then
+			local powertype, spellstring = t.powertype, t.spellstring
+			if powerTable[powertype] then
+				spellstring = powerTable[powertype]
+				powertype = -1
+			end
+
 			gain.actorid = t.dstGUID
 			gain.actorname = t.dstName
 			gain.actorflags = t.dstFlags
 
-			gain.spellid = t.spellstring
+			gain.spellid = spellstring
 			gain.amount = t.amount
-			gain.type = t.powertype
+			gain.type = powertype
 
 			Skada:FixPets(gain)
 			Skada:DispatchSets(log_gain)
@@ -93,7 +124,7 @@ Skada:RegisterModule("Resources", function(L, P)
 
 	-- allows us to create a module for each power type.
 	function mode_base:Create(power, name)
-		if not power or not gainTable[power] then return end
+		if not power or (not gainTable[power] and power ~= -1) then return end
 
 		local instance = Skada:NewModule(name)
 		setmetatable(instance, mode_base_mt)
@@ -188,6 +219,7 @@ Skada:RegisterModule("Resources", function(L, P)
 	local mode_rage = mode_base:Create(SPELL_POWER_RAGE, "Rage Generated")
 	local mode_energy = mode_base:Create(SPELL_POWER_ENERGY, "Energy Generated")
 	local mode_runic = mode_base:Create(SPELL_POWER_RUNIC_POWER, "Runic Power Generated")
+	local mode_power = mode_base:Create(-1, "Other Resources")
 
 	function mode:OnEnable()
 		self.metadata = {columns = {Amount = true, Percent = false, sPercent = true}}
@@ -200,11 +232,13 @@ Skada:RegisterModule("Resources", function(L, P)
 		mode_rage.metadata.icon = [[Interface\ICONS\spell_nature_shamanrage]]
 		mode_energy.metadata.icon = [[Interface\ICONS\spell_holy_circleofrenewal]]
 		mode_runic.metadata.icon = [[Interface\ICONS\inv_sword_62]]
+		mode_power.metadata.icon = [[Interface\ICONS\spell_fire_fire]]
 
 		Skada:AddMode(mode_mana, "Resources")
 		Skada:AddMode(mode_rage, "Resources")
 		Skada:AddMode(mode_energy, "Resources")
 		Skada:AddMode(mode_runic, "Resources")
+		Skada:AddMode(mode_power, "Resources")
 	end
 
 	function mode:OnDisable()
@@ -212,5 +246,6 @@ Skada:RegisterModule("Resources", function(L, P)
 		Skada:RemoveMode(mode_rage)
 		Skada:RemoveMode(mode_energy)
 		Skada:RemoveMode(mode_runic)
+		Skada:RemoveMode(mode_power)
 	end
 end)
